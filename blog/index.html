@@ -1,11 +1,24 @@
 ---
 layout: default
 ---
-
-<h4>blog</h4>
-{% for post in site.posts %}
-		<time>{{ post.date | date: "%b %-d, %Y" }}</time>
-		<h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-{% endfor %}
-
-<p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<div class="row">
+	<div class="col-md-12 col-lg-12">
+		<h2>Posts recientes</h2>
+	</div>
+</div>
+<!-- Listado de posts -->
+<div class="row">
+	{% for post in site.posts %}
+	<div class="col-md-4 col-lg-4">
+		<h2>{{ post.title }}</h2>
+		<h4><time>{{ post.date | date: "%b %-d, %Y" }}</time></h4>
+		<p class="resumen-post">{{ post.content | strip_html | truncate: 250, '...' }}</p>
+		<p><a class="btn btn-primary" href="{{ post.url | prepend: site.baseurl }}" role="button">Ver detalle »</a></p>
+	</div>
+	{% endfor %}
+</div>
+<div class="row">
+	<div class="col-md-12 col-lg-12 text-center">
+		<p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+	</div>
+</div>
